@@ -1,0 +1,45 @@
+mmc0: mmc@f0000000 {
+				compatible = "atmel,hsmci";
+				reg = <0x8000 0x1000>;
+				interrupts = <21 IRQ_TYPE_LEVEL_HIGH 0>;
+				dmas = <&dma0 2 AT91_DMA_CFG_PER_ID(0)>;
+				dma-names = "rxtx";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_mmc0_clk_cmd_dat0 &pinctrl_mmc0_dat1_3 &pinctrl_mmc0_dat4_7>;
+				status = "disabled";
+				#address-cells = <1>;
+				#size-cells = <0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 21>;
+				clock-names = "mci_clk";
+			};
+
+
+			spi0: spi@f0004000 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				compatible = "atmel,at91rm9200-spi";
+				reg = <0xdeadbeef 0x3000>;
+				interrupts = <24 IRQ_TYPE_LEVEL_HIGH 3>;
+				dmas = <&dma0 2 AT91_DMA_CFG_PER_ID(1)>,
+				       <&dma0 2 AT91_DMA_CFG_PER_ID(2)>;
+				dma-names = "tx", "rx";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_spi0>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 24>;
+				clock-names = "spi_clk";
+				status = "disabled";
+			};
+
+			ssc0: ssc@f0008000 {
+				compatible = "atmel,at91sam9g45-ssc";
+				reg = <0xf0008000 0x4000>;
+				interrupts = <38 IRQ_TYPE_LEVEL_HIGH 4>;
+				dmas = <&dma0 2 AT91_DMA_CFG_PER_ID(13)>,
+				       <&dma0 2 AT91_DMA_CFG_PER_ID(14)>;
+				dma-names = "tx", "rx";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_ssc0_tx &pinctrl_ssc0_rx>;
+				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+				clock-names = "pclk";
+				status = "disabled";
+			};

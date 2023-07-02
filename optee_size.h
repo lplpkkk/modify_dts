@@ -1,0 +1,5 @@
+
+
+#define OPTEE_SIZE 0x3000
+
+#define OPTEE_SIZE_MAX 0x1000
